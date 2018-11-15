@@ -42,15 +42,14 @@ RUN	apt install -y curl \
 	re2c
 
 RUN cd /tmp/ \
-	wget https://github.com/wcgallego/pecl-gearman/archive/master.zip \
-	unzip master.zip \
-	cd pecl-gearman-master \
-	phpize \
-	./configure \
-	make \
-	make install
-RUN	echo "extension=gearman.so" | tee /etc/php/7.0/mods-available/gearman.ini
-RUN	echo "extension=gearman.so" >> /etc/php/7.0/cli/php.ini
-RUN	phpenmod -v ALL -s ALL gearman 
+	&& wget https://github.com/wcgallego/pecl-gearman/archive/master.zip \
+	&& unzip master.zip \
+	&& cd pecl-gearman-master \
+	&& phpize \
+	&& ./configure \
+	&& make \
+	&& make install \
+	&& echo "extension=gearman.so" | tee /etc/php/7.0/mods-available/gearman.ini
+RUN phpenmod -v ALL -s ALL gearman 
 
 CMD ["/bin/bash", "init.sh"]
