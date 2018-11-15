@@ -50,6 +50,10 @@ RUN cd /tmp/ \
 	&& make \
 	&& make install \
 	&& echo "extension=gearman.so" | tee /etc/php/7.0/mods-available/gearman.ini
-RUN phpenmod -v ALL -s ALL gearman 
+RUN phpenmod -v ALL -s ALL gearman
+
+EXPOSE 4730
+CMD gearmand -p 4730 -L 0.0.0.0
+RUN gearmand --version
 
 CMD ["/bin/bash", "init.sh"]
