@@ -103,4 +103,4 @@ EXPOSE 4730
 
 RUN gearmand --version
 
-USER gearman
+CMD ["/bin/bash", "init.sh"]
