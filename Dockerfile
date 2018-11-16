@@ -104,5 +104,3 @@ EXPOSE 4730
 RUN gearmand --version
 
 USER gearman
-
-CMD ["gearmand","--log-file", "/var/log/gearman/gearmand.log", "-p", "4730", "-L", "0.0.0.0"]
